@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface HouseRepository extends CrudRepository<House,Long> {
 List<House> findAll();
-List<House>findByLocation();
+List<House>findByLocation(String location);
 }
