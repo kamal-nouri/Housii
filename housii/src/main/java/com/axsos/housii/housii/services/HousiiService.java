@@ -2,6 +2,7 @@ package com.axsos.housii.housii.services;
 
 
 import com.axsos.housii.housii.models.Category;
+import com.axsos.housii.housii.models.House;
 import com.axsos.housii.housii.models.User;
 import com.axsos.housii.housii.repositories.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -86,6 +87,77 @@ public class HousiiService {
         } else {
             return null;
         }
+    }
+
+    //    House services
+    public List<House> allHouses() {
+        return houseRepository.findAll();
+    }
+
+
+    public House createHouse(House house) {
+        return houseRepository.save(house);
+    }
+
+
+    public House findHouse(Long id) {
+        Optional<House> optionalHouse = houseRepository.findById(id);
+        if (optionalHouse.isPresent()) {
+            return optionalHouse.get();
+        } else {
+            return null;
+        }
+    }
+
+    public House updateHouse(Long id, String name, String desc, String loc, double price) {
+        House house = findHouse(id);
+        if (house != null) {
+            house.setName(name);
+            house.setDescription(desc);
+            house.setLocation(loc);
+            house.setPrice(price);
+            houseRepository.save(house);
+            return house;
+        } else {
+            return null;
+        }
+    }
+
+    public void deleteHouse(Long id) {
+        House house = findHouse(id);
+        if (house != null) {
+            houseRepository.deleteById(id);
+        }
+    }
+
+    public void updateHousi(House house) {
+        House updateHousi = houseRepository.findById(house.getId()).orElse(null);
+        assert updateHousi != null;
+        updateHousi.setName(house.getName());
+        updateHousi.setLocation(house.getLocation());
+        updateHousi.setDescription(house.getDescription());
+        updateHousi.setPrice(house.getPrice());
+        houseRepository.save(updateHousi);
+    }
+
+    public List<House> rentedHousesForUser(User user) {
+        return houseRepository.findAllByUser(user);
+    }
+
+    public List<House> allHousesByLocation(String location) {
+        return houseRepository.findByLocation(location);
+    }
+
+    public List<House> allHousesByCategory(Category category) {
+        return houseRepository.findAllByCategory(category);
+    }
+
+    public House rentHouse(long userId, Long houseId) {
+        User user = userRepository.findById(userId).orElse(null);
+        House house = houseRepository.findById(houseId).orElse(null);
+        assert house != null;
+        house.setUser(user);
+        return houseRepository.save(house);
     }
 }
 
