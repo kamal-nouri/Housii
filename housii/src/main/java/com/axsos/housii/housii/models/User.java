@@ -1,9 +1,14 @@
 package com.axsos.housii.housii.models;
 
+
+
+import org.hibernate.validator.constraints.UniqueElements;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
 
@@ -14,10 +19,11 @@ public class User {
     @Id
     @GeneratedValue
     private Long id;
-    @Pattern(regexp = "([a-zA-Z]*){3,}",message = "name must be letters and at least 3 characters")
+    @Size(min = 3,message = "name must be letters and at least 3 characters")
     private String name;
     @Email(message = "Email must be valid")
     @NotBlank(message = "Email must not be blank")
+    @Column(nullable = false, unique = true, length = 45)
     private String email;
     @Pattern(regexp = "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}", message = "password must contain capital letter, small letter, numbers and at least 8 characters")
     private String password;
@@ -27,6 +33,27 @@ public class User {
     private List<Rating> ratings;
     @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
     private List<House> houses;
+    @Column(name = "verification_code", length = 64)
+    private String verificationCode;
+
+    public String getVerificationCode() {
+        return verificationCode;
+    }
+
+    public void setVerificationCode(String verificationCode) {
+        this.verificationCode = verificationCode;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    private boolean enabled;
+
     @Column(updatable = false)
     private Date createdAt;
     private Date updatedAt;
