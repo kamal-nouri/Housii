@@ -157,6 +157,22 @@ public class HousiiController {
             return "redirect:/";
         }
     }
+    @RequestMapping("/edit/{id}")
+    public String editHouse(@PathVariable("id")Long id, @ModelAttribute("house")House house, Model model, HttpSession session){
+        model.addAttribute("house", housiiService.findHouse(id));
+        return "editHouse.jsp";
+    }
+    @RequestMapping(value = "/edit/{id}",method = RequestMethod.PUT)
+    public String updateHouse(@PathVariable("id")Long id,@Valid @ModelAttribute("house")House house,BindingResult result){
+        if(result.hasErrors()){
+            return "editHouse.jsp";
+        }else{
+            housiiService.updateHousi(house);
+            return "redirect:/";
+
+        }
+
+    }
     @RequestMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();
