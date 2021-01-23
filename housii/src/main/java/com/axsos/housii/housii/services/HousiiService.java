@@ -17,6 +17,12 @@ import org.springframework.stereotype.Service;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -166,12 +172,22 @@ public class HousiiService {
         return houseRepository.findAllByCategory(category);
     }
 
-    public House rentHouse(long userId, Long houseId) {
+    public House rentHouse(long userId,Long houseId,Date date) {
         User user = userRepository.findById(userId).orElse(null);
-        House house = houseRepository.findById(houseId).orElse(null);
+        House house=houseRepository.findById(houseId).orElse(null);
+//        Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(date);
         assert house != null;
         house.setUser(user);
+        house.setDate(date);
+        System.out.println(estimatedDate(date));
+        house.setEstimatedDate(estimatedDate(date));
         return houseRepository.save(house);
+    }
+    public Integer estimatedDate(Date date){
+        Date today = Calendar.getInstance().getTime();
+       Integer nowadays=Math.toIntExact(today.getTime() / (24 * 60 * 60 * 1000));
+        Integer days = Math.toIntExact(date.getTime() / (24 * 60 * 60 * 1000));
+    return days - nowadays;
     }
 
     // Email verification

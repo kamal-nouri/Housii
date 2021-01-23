@@ -44,13 +44,18 @@
 <div class="main">
 <img src="${pageContext.request.contextPath}/img/${house.name}.jpg"
      alt="image for ${house.name}"/>
+    <p><form:errors path="house.*"/></p>
 <div class="right">
     <p>  <h3> ${house.name}</h3></p>
     <p>Location: ${house.location}</p>
     <p>Description :${house.description} </p>
     <p>Price :${house.price} </p>
-    <form:form modelAttribute="house" method="post" action="/">
-        <input type="date" value="${house.date}">
+    <form:form modelAttribute="house" method="post" action="/rent/${house.id}">
+<%--        <input type="hidden" name="_method" value="put">--%>
+        <p>
+            <form:label path="date">Due to:</form:label>
+            <form:input type="date" path="date"/>
+        </p>
         <input class="bn" type="submit" value="Rent">
     </form:form>
 </div>
