@@ -10,9 +10,11 @@ img {
     min-width: 40%;
     max-height: 386px;
 }
-h3{
+
+h3 {
     margin-left: 8px;
 }
+
 p {
     margin-left: 20px;
     font-family: cursive !important;
@@ -36,15 +38,16 @@ input {
 }
 
 .main {
-    display: flex;
     align-items: center;
     justify-content: space-around;
 }
-.right{
+
+.right {
     display: inline-block;
     width: 46%;
     padding-bottom: 65px;
     margin-top: 71px;
     border-radius: 30px;
     background-color: #2e2e2e;
+    vertical-align: top;
 }

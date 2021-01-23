@@ -62,7 +62,7 @@
         <div class="form-group">
             <form:input id="date" type="date" path="date"/>
         </div>
-        <input type="submit" class="form-button button-l margin-b" value="rent"/>
+        <input type="submit" class="form-button button-l margin-b bn" value="rent"/>
     </form:form>
 <%--    <form action="/rent/${house.id}" method="post">--%>
 <%--        <p>--%>

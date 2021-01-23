@@ -26,16 +26,16 @@
 
         <div id="navbarSupportedContent" class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active"><a href="#" class="nav-link">Houses <span class="sr-only">(current)</span></a></li>
-                <li class="nav-item active"><a href="#" class="nav-link">Studios</a></li>
-                <li class="nav-item active"><a href="#" class="nav-link">Villa</a></li>
+                <li class="nav-item active"><a href="/houses" class="nav-link">Houses <span class="sr-only">(current)</span></a></li>
+                <li class="nav-item active"><a href="/studios" class="nav-link">Studios</a></li>
+                <li class="nav-item active"><a href="/villas" class="nav-link">Villa</a></li>
                 <c:choose>
                     <c:when test="${userId==null}">
                 <li class="nav-item active"><a href="/login" class="nav-link">Login</a></li>
                 <li class="nav-item active"><a href="/register" class="nav-link">Sign Up</a></li>
                     </c:when>
                     <c:when test="${userId!=null}">
-                <li class="nav-item active"><a href="/myprofile/${userId}" class="nav-link">My Profile</a></li>
+                <li class="nav-item active"><a href="/profile" class="nav-link">My Profile</a></li>
                 <li class="nav-item active"><a href="/logout" class="nav-link">Logout</a></li>
                     </c:when>
                 </c:choose>

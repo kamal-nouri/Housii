@@ -139,7 +139,7 @@ public class HousiiController {
         } else {
             House rented = housiiService.rentHouse((Long) session.getAttribute("userId"), id,house.getDate());
             System.out.println("niceeeeeeeeeeeeeeeeeeeee");
-            return "redirect:/cat/" + id;
+            return "redirect:/";
         }
     }
 
@@ -157,20 +157,13 @@ public class HousiiController {
             return "redirect:/";
         }
     }
-    @RequestMapping("/edit/{id}")
-    public String editHouse(@PathVariable("id")Long id, @ModelAttribute("house")House house, Model model, HttpSession session){
-        model.addAttribute("house", housiiService.findHouse(id));
-        return "editHouse.jsp";
-    }
-    @RequestMapping(value = "/edit/{id}",method = RequestMethod.PUT)
-    public String updateHouse(@PathVariable("id")Long id,@Valid @ModelAttribute("house")House house,BindingResult result){
-        if(result.hasErrors()){
-            return "editHouse.jsp";
-        }else{
-            housiiService.updateHousi(house);
-            return "redirect:/";
-
-        }
+    @RequestMapping("/profile")
+    public String profile(Model model,HttpSession session){
+        User user=housiiService.findUser((Long) session.getAttribute("userId"));
+        List<House> rented=housiiService.rentedHousesForUser(user);
+        model.addAttribute("rented",rented);
+        model.addAttribute("user",user);
+        return "profile.jsp";
 
     }
     @RequestMapping("/logout")

@@ -287,6 +287,12 @@ input[type=submit] {
     padding-top: 20px;
     width: 100%;
     box-sizing: border-box;
+    margin-left: 33px;
+}
+input.liquid{
+    border-radius: 42px;
+    padding: 2% 5%;
+    margin-left: 223px;
 }
 .search-bar{
     top:10%;
