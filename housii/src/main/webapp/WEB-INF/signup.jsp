@@ -31,34 +31,26 @@
     <div>
         <h1 class="logo-badge text-whitesmoke"><span class="fa fa-user-circle"></span></h1>
     </div>
-    <div>
-        <p><form:errors path="user.*"/></p>
-        <p><c:out value="${message}" /></p>
-    </div>
     <h3 class="text-whitesmoke">Sign Up</h3>
     <div class="container-content">
     <form:form id="signup" method="POST" action="/process_register" modelAttribute="user" cssClass="margin-t">
         <div class="form-group">
-<%--            <form:label path="name">Name:</form:label>--%>
             <form:input cssClass="form-control" id="name" placeholder=" Name" path="name"/>
         </div>
         <div class="form-group">
-<%--            <form:label path="email">Email:</form:label>--%>
             <form:input type="email" cssClass="form-control" id="email" placeholder="Email" path="email"/>
         </div>
 
         <div class="form-group">
-<%--            <form:label path="password">Password:</form:label>--%>
             <form:password cssClass="form-control" id="password" placeholder="Password" path="password"/>
         </div>
         <div class="form-group">
-<%--            <form:label path="passwordConfirmation">Password Confirmation:</form:label>--%>
             <form:password cssClass="form-control" id="passwordConfirmation" placeholder="Confirm Password" path="passwordConfirmation"/>
         </div>
         <input class="form-button button-l margin-b" type="submit" value="Sign Up"/>
     </form:form>
         <div>
-            <p><form:errors path="user.*"/></p>
+            <p><form:errors cssStyle="font-family: cursive;" path="user.*"/></p>
             <p><c:out value="${message}" /></p>
         </div>
         <a href="/login">already have an account!</a>
