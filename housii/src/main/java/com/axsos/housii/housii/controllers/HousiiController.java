@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.UnsupportedEncodingException;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -29,7 +30,7 @@ public class HousiiController {
     }
 
     @RequestMapping("/")
-    public String home(HttpSession session, Model model, @ModelAttribute("category") Category category) {
+    public String home(HttpSession session, Model model, @ModelAttribute("category") Category category, @ModelAttribute("house") House house) {
         List<Category> categories=housiiService.allCategories();
         model.addAttribute("categories",categories);
         return "home.jsp";
@@ -108,11 +109,21 @@ public class HousiiController {
     }
     @RequestMapping("/cat/{id}")
     public String ShowCat(@PathVariable("id") Long id, Model model,@ModelAttribute("house") House house,HttpSession session) {
-//        Category category = housiiService.findCategory(name);
         House house1 = housiiService.findHouse(id);
         System.out.println(house1.getId());
         model.addAttribute("house", house1);
         return "show.jsp";
+    }
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    @ResponseBody
+    public List<String> search(HttpServletRequest request) {
+        return housiiService.search(request.getParameter("term"));
+    }
+
+    @PostMapping( value = "/searchLocation")
+    public String searchByLocation(HttpSession session, Model model,@ModelAttribute("house") House house) {
+        model.addAttribute("searchedHouses",housiiService.allHousesByLocation(house.getLocation()));
+        return "search.jsp";
     }
     @RequestMapping("/logout")
     public String logout(HttpSession session){

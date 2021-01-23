@@ -301,3 +301,7 @@ input[type=submit] {
     height: 10%;
     width: 60%;
 }
+.ui-autocomplete .ui-menu .ui-widget .ui-widget-content .ui-corner-all{
+    background-color: #ffffff !important;
+    opacity: .6 !important;
+}

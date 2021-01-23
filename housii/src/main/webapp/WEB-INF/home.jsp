@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: msys
@@ -34,6 +35,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/home.css">
+    <!------ Include the above in your HEAD tag for search bar ---------->
+    <script src="${pageContext.request.contextPath}/js/jquery-1.4.2.js"></script>
+    <script src="https://code.jquery.com/jquery-1.4.2.js" integrity="sha256-lcAjyA3+DTAwTFgkSHiZUGH4eAGmbapda/TyUSvg5vk=" crossorigin="anonymous"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery-ui-1.8.2.custom.js"></script>
+    <script src="https://code.jquery.com/ui/1.8.20/jquery-ui.js" integrity="sha256-nzQScIoAB0RpIRHQq0ftdGO/gQuTtcsXu4QbZ6FhIA8=" crossorigin="anonymous"></script>
+    <link href="${pageContext.request.contextPath}/css/themes/base/jquery.ui.all.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#locationName').autocomplete({
+                source : '${pageContext.request.contextPath }/search'
+            });
+        });
+    </script>
+    <!------ Include the above in your HEAD tag for search bar ---------->
 </head>
 <body>
 <%@ include file = "header.jsp" %>
@@ -53,20 +68,36 @@
         <%--        <div class="numbertext" style="display: flex;align-items: center;justify-content: center;width: 100%;height: 100%"><div style="display: flex;align-items: center;justify-content: center;background-color:white;opacity:.6;border-radius:80px;height: 15%;width: 80%;">search</div></div>--%>
         <img src="img/third.jpg" style="width:100%">
     </div>
-    <div class="search-bar">
+<%--    <div class="search-bar">--%>
+<%--        <div class="input-group">--%>
+<%--            <input type="text" name="searchedLocation" placeholder="search" id="locationName" required/>--%>
+<%--        </div>--%>
+<%--        <a class="imp" href="/searchLocation">--%>
+<%--            <span>Search</span>--%>
+<%--            <div class="liquid"></div>--%>
+<%--        </a>--%>
+<%--    </div>--%>
+
+<%--    <div class="search-bar">--%>
+<%--        <form action="/searchLocation" method="post">--%>
+<%--        <div class="input-group">--%>
+<%--            <input type="text" name="searchedLocation" placeholder="search" id="locationName" required/>--%>
+<%--        </div>--%>
+<%--        <div class="imp">--%>
+<%--            <input type="submit" class="liquid" value="search">--%>
+<%--        </div>--%>
+<%--        </form>--%>
+<%--    </div>--%>
+    <div >
+    <form:form method="POST" action="/searchLocation" cssClass="search-bar" modelAttribute="house">
         <div class="input-group">
-            <input type="text" name="name" placeholder="search" id="name" required/>
+            <form:input id="locationName" placeholder="Search" path="location"/>
         </div>
-        <a class="imp" href="#">
-            <span>Button</span>
-            <div class="liquid"></div>
-        </a>
+        <input type="submit" class="liquid" value="search"/>
+    </form:form>
     </div>
-
 </div>
-
 <br>
-
 <div style="text-align:center">
     <span class="dot"></span>
     <span class="dot"></span>

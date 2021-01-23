@@ -106,7 +106,9 @@ public class HousiiService {
         return houseRepository.findAll();
     }
 
-
+    public List<String> search(String keyword) {
+        return houseRepository.search(keyword);
+    }
     public House createHouse(House house) {
         return houseRepository.save(house);
     }
@@ -157,7 +159,7 @@ public class HousiiService {
     }
 
     public List<House> allHousesByLocation(String location) {
-        return houseRepository.findByLocation(location);
+        return houseRepository.findAllByLocation(location);
     }
 
     public List<House> allHousesByCategory(Category category) {
