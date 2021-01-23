@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Yasmeen Muhtaseb
@@ -55,28 +56,29 @@
 </head>
 <body>
 <h3>Add House</h3>
-
 <div class="container">
+    <p><form:errors cssStyle="font-family: cursive;" path="house.*"/></p>
 <form:form method="POST" action="/add" modelAttribute="house">
     <form:label path="name">Name:</form:label>
-    <input type="text"  path="name" placeholder="House Name ..."/>
+    <form:input type="text"  path="name" placeholder="House Name ..."/>
 
     <form:label path="location">Location:</form:label>
-    <input type="text"  path="location" placeholder="House Location ..."/>
+    <form:input type="text"  path="location" placeholder="House Location ..."/>
 
     <form:label path="price">Price:</form:label>
-    <input  type="text" path="price" placeholder="House Price ..."/>
+    <form:input  type="text" path="price" placeholder="House Price ..."/>
 
 
     <form:label path="category">Category:</form:label>
     <form:select path="category">
-        <form:option value="House">House</form:option>
-        <form:option value="Studio">Studio</form:option>
-        <form:option value="Villa">Villa</form:option>
+        <c:forEach items="${categories}" var="cat">
+            <form:option value="${cat.id}">${cat.name}</form:option>
+        </c:forEach>
     </form:select>
 
     <form:label path="description">Description:</form:label>
-    <input  type="text" path="description" placeholder="Write Description.." style="height:200px"/>
+    <form:textarea path="description" placeholder="Write Description.." style="height:200px"/>
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     <input type="submit" value="Add">
     <form action="/">
         <input type="submit" value="Back">

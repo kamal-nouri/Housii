@@ -7,7 +7,8 @@
   Time: 11:58 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isErrorPage="true" %>
+
 <html>
 <head>
     <!--Important link source from https://bootsnipp.com/snippets/ooa9M-->
@@ -42,36 +43,32 @@
 <body>
 <%@ include file="header.jsp" %>
 <div class="main">
-<img src="${pageContext.request.contextPath}/img/${house.name}.jpg"
-     alt="image for ${house.name}"/>
+    <img src="${pageContext.request.contextPath}/img/${house.name}.jpg"
+         alt="image for ${house.name}"/>
     <p><form:errors path="house.*"/></p>
-<div class="right">
-    <p>  <h3> ${house.name}</h3></p>
-    <p>Location: ${house.location}</p>
-    <p>Description :${house.description} </p>
-    <p>Price :${house.price} </p>
-<%--    <form:form modelAttribute="house" method="post" action="/rent/${house.id}">--%>
-<%--&lt;%&ndash;        <input type="hidden" name="_method" value="put">&ndash;%&gt;--%>
-<%--        <p>--%>
-<%--            <form:label path="date">Due to:</form:label>--%>
-<%--            <form:input type="date" path="date"/>--%>
-<%--        </p>--%>
-<%--        <input class="bn" type="submit" value="Rent">--%>
-<%--    </form:form>--%>
-    <form:form method="POST" action="/rent/${house.id}" modelAttribute="house">
-        <div class="form-group">
-            <form:input id="date" type="date" path="date"/>
-        </div>
-        <input type="submit" class="form-button button-l margin-b bn" value="rent"/>
-    </form:form>
-<%--    <form action="/rent/${house.id}" method="post">--%>
-<%--        <p>--%>
-<%--            <label for="date">Rent</label>--%>
-<%--            <input type="date" id="date" name="date"/>--%>
-<%--        </p>--%>
-<%--        <input type="submit" value="Rent"/>--%>
-<%--    </form>--%>
+    <div class="right">
+        <h3> ${house.name}</h3>
+        <p>Location: ${house.location}</p>
+        <p>Description :${house.description} </p>
+        <p>Price :${house.price} </p>
+        <c:choose>
+            <c:when test="${house.user!=null}">
+                <p>Rented for ${house.estimatedDate} Days</p>
+            </c:when>
+            <c:when test="${house.user==null}">
+                <form action="/rent/${house.id}" method="post">
+                    <p>
+                        <label for="date">Rent</label>
+                        <input type="date" id="date" name="date"/>
+                    </p>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    <input type="submit" value="Rent"/>
+                </form>
+            </c:when>
+        </c:choose>
+    </div>
 </div>
 </div>
+<%@ include file = "footer.jsp" %>
 </body>
 </html>

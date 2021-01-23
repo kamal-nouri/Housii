@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.UnsupportedEncodingException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -131,31 +133,51 @@ public class HousiiController {
     }
 
     @RequestMapping(value = "/rent/{id}", method = RequestMethod.POST)
-    public String addRent(Model model, HttpSession session,@Valid @ModelAttribute("house")House house, BindingResult result, @PathVariable("id") Long id) {
-//    User user=housiiService.findUser((Long) session.getAttribute("userId"));
-        if (result.hasErrors()) {
-            System.out.println("errroorrrrrrrrrrr");
-            return "show.jsp";
-        } else {
-            House rented = housiiService.rentHouse((Long) session.getAttribute("userId"), id,house.getDate());
-            System.out.println("niceeeeeeeeeeeeeeeeeeeee");
-            return "redirect:/";
-        }
+    public String addRent(Model model, HttpSession session,@RequestParam("date")String date, @PathVariable("id") Long id) throws ParseException {
+        System.out.println(date);
+        Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(date);
+        String[] sDate=date.split("-");
+        System.out.println(date1);
+
+        System.out.println(sDate[0]+ " "+sDate[1]+ " "+sDate[2]);
+        House rented = housiiService.rentHouse((Long) session.getAttribute("userId"), id,date1);
+        return "redirect:/cat/" + id;
     }
 
     @RequestMapping("/add")
-    public String addHouse(@ModelAttribute("house")House house) {
+    public String addHouse(@ModelAttribute("house")House house,Model model) {
+        model.addAttribute("categories",housiiService.allCategories());
         return "addHouse.jsp";
     }
     @RequestMapping(value = "/add",method = RequestMethod.POST)
     public String addNewHouse(@Valid @ModelAttribute("house")House house,BindingResult result){
         if(result.hasErrors()){
+            System.out.println(house.getLocation());
+            System.out.println(result);
             return "addHouse.jsp";
         }
         else{
             housiiService.newHouse(house);
             return "redirect:/";
         }
+    }
+    @RequestMapping("/edit/{id}")
+    public String editHouse(@PathVariable("id")Long id, @ModelAttribute("house")House house, Model model, HttpSession session){
+        model.addAttribute("house", housiiService.findHouse(id));
+        model.addAttribute("categories",housiiService.allCategories());
+        System.out.println(housiiService.findHouse(id).getLocation());
+        return "editHouse.jsp";
+    }
+    @RequestMapping(value = "/edit/{id}",method = RequestMethod.PUT)
+    public String updateHouse(@PathVariable("id")Long id,@Valid @ModelAttribute("house")House house,BindingResult result){
+        if(result.hasErrors()){
+            return "editHouse.jsp";
+        }else{
+            housiiService.updateHousi(house);
+            return "redirect:/";
+
+        }
+
     }
     @RequestMapping("/profile")
     public String profile(Model model,HttpSession session){
