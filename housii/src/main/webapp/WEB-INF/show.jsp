@@ -34,7 +34,7 @@
     <!------ Include the above in your HEAD tag ---------->
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
-    <title>Title</title>
+    <title>Housii</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/category.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/show.css">
@@ -50,14 +50,27 @@
     <p>Location: ${house.location}</p>
     <p>Description :${house.description} </p>
     <p>Price :${house.price} </p>
-    <form:form modelAttribute="house" method="post" action="/rent/${house.id}">
-<%--        <input type="hidden" name="_method" value="put">--%>
-        <p>
-            <form:label path="date">Due to:</form:label>
-            <form:input type="date" path="date"/>
-        </p>
-        <input class="bn" type="submit" value="Rent">
+<%--    <form:form modelAttribute="house" method="post" action="/rent/${house.id}">--%>
+<%--&lt;%&ndash;        <input type="hidden" name="_method" value="put">&ndash;%&gt;--%>
+<%--        <p>--%>
+<%--            <form:label path="date">Due to:</form:label>--%>
+<%--            <form:input type="date" path="date"/>--%>
+<%--        </p>--%>
+<%--        <input class="bn" type="submit" value="Rent">--%>
+<%--    </form:form>--%>
+    <form:form method="POST" action="/rent/${house.id}" modelAttribute="house">
+        <div class="form-group">
+            <form:input id="date" type="date" path="date"/>
+        </div>
+        <input type="submit" class="form-button button-l margin-b" value="rent"/>
     </form:form>
+<%--    <form action="/rent/${house.id}" method="post">--%>
+<%--        <p>--%>
+<%--            <label for="date">Rent</label>--%>
+<%--            <input type="date" id="date" name="date"/>--%>
+<%--        </p>--%>
+<%--        <input type="submit" value="Rent"/>--%>
+<%--    </form>--%>
 </div>
 </div>
 </body>

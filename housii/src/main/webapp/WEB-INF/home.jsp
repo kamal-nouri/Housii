@@ -10,6 +10,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <title>Housii</title>
     <!--Important link source from https://bootsnipp.com/snippets/ooa9M-->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -78,16 +79,6 @@
 <%--        </a>--%>
 <%--    </div>--%>
 
-<%--    <div class="search-bar">--%>
-<%--        <form action="/searchLocation" method="post">--%>
-<%--        <div class="input-group">--%>
-<%--            <input type="text" name="searchedLocation" placeholder="search" id="locationName" required/>--%>
-<%--        </div>--%>
-<%--        <div class="imp">--%>
-<%--            <input type="submit" class="liquid" value="search">--%>
-<%--        </div>--%>
-<%--        </form>--%>
-<%--    </div>--%>
     <div >
     <form:form method="POST" action="/searchLocation" cssClass="search-bar" modelAttribute="house">
         <div class="input-group">

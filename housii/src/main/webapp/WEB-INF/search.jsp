@@ -32,7 +32,7 @@
     <!------ Include the above in your HEAD tag ---------->
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
-    <title>Title</title>
+    <title>Housii</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/category.css">
 </head>

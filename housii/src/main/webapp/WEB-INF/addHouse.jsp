@@ -57,7 +57,7 @@
 <h3>Add House</h3>
 
 <div class="container">
-<form:form method="POST" action="/add">
+<form:form method="POST" action="/add" modelAttribute="house">
     <form:label path="name">Name:</form:label>
     <input type="text"  path="name" placeholder="House Name ..."/>
 
@@ -79,7 +79,9 @@
     <input  path="description" placeholder="Write Description.." style="height:200px"/>
     <input type="submit" value="Add">
 </form:form>
-    <input type="submit" action="/"value="Back">
+    <form action="/">
+    <input type="submit" value="Back">
+    </form>
     </div>
 </body>
 </html>

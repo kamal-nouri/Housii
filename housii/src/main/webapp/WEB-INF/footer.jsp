@@ -10,7 +10,7 @@
 <head>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
     <link href="${pageContext.request.contextPath}/css/style3.css" rel="stylesheet">
-    <title>Title</title>
+    <title>Housii</title>
 </head>
 <body>
 <footer id="dk-footer" class="dk-footer">

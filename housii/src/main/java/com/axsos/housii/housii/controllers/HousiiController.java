@@ -131,13 +131,13 @@ public class HousiiController {
     }
 
     @RequestMapping(value = "/rent/{id}", method = RequestMethod.POST)
-    public String addRent(Model model, HttpSession session, @RequestParam("date"), BindingResult result, @PathVariable("id") Long id) {
+    public String addRent(Model model, HttpSession session,@Valid @ModelAttribute("house")House house, BindingResult result, @PathVariable("id") Long id) {
 //    User user=housiiService.findUser((Long) session.getAttribute("userId"));
         if (result.hasErrors()) {
             System.out.println("errroorrrrrrrrrrr");
             return "show.jsp";
         } else {
-            House rented = housiiService.rentHouse((Long) session.getAttribute("userId"), id, house.getDate());
+            House rented = housiiService.rentHouse((Long) session.getAttribute("userId"), id,house.getDate());
             System.out.println("niceeeeeeeeeeeeeeeeeeeee");
             return "redirect:/cat/" + id;
         }
@@ -157,11 +157,9 @@ public class HousiiController {
             return "redirect:/";
         }
     }
-
     @RequestMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();
         return "redirect:/";
     }
-
 }
