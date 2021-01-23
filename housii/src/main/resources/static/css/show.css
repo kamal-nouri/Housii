@@ -1,16 +1,20 @@
 body {
     background-color: #202020;
+    font-family: cursive !important;
 }
 
 img {
-    max-width: 90%;
-    margin-left: 63px;
+    margin-top: 5%;
+    margin-left: 40px;
     border-radius: 30px;
+    min-width: 40%;
+    max-height: 366px;
 }
 
 p {
-    margin-left: 63px;
-    font-family: cursive;
+    margin-left: 20px;
+    font-family: cursive !important;
+    margin-top: 10px;
     color: beige;
 }
 
@@ -21,8 +25,24 @@ p {
     width: 100px;
     font-family: cursive;
 }
-input{
-    margin-left: 63px;
+
+input {
+    margin-left: 20px;
+    margin-top: 10px;
     font-family: cursive;
     border-radius: 10px;
+}
+
+.main {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.right{
+    display: inline-block;
+    width: 46%;
+    padding-bottom: 154px;
+    margin-top: 71px;
+    border-radius: 30px;
+    background-color: #2E2E2E;
 }

@@ -11,12 +11,13 @@
 <html>
 <head>
     <!--Important link source from https://bootsnipp.com/snippets/ooa9M-->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
+          id="bootstrap-css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 
     <!------ Include the above in your HEAD tag ---------->
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -32,25 +33,26 @@
 
     <!------ Include the above in your HEAD tag ---------->
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
     <title>Title</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/category.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/show.css">
 </head>
 <body>
-<%@ include file = "header.jsp" %>
-<div class="card_image"><img src="${pageContext.request.contextPath}/img/${house.name}.jpg"
-                             alt="image for ${house.name}"/></div>
-<div class="card_title title-white">
+<%@ include file="header.jsp" %>
+<div class="main">
+<img src="${pageContext.request.contextPath}/img/${house.name}.jpg"
+     alt="image for ${house.name}"/>
+<div class="right">
     <p>${house.location}</p>
+    <p>Description :${house.description} </p>
+    <p>Price :${house.price} </p>
+    <form:form modelAttribute="house" method="post" action="/">
+        <input type="date" value="${house.date}">
+        <input class="bn" type="submit" value="Rent">
+    </form:form>
 </div>
-<p class="spec">Location :${house.location} </p>
-<p class="spec">Location :${house.description} </p>
-<p class="spec">Price :${house.price} </p>
-<form:form modelAttribute="house" method="post" action="/">
-    <input type="date" value="${house.date}">
-    <input class="bn" type="submit" value="Rent">
-</form:form>
+</div>
 </body>
 </html>
