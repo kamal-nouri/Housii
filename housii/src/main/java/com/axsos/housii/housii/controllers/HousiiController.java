@@ -143,6 +143,21 @@ public class HousiiController {
         }
     }
 
+    @RequestMapping("/add")
+    public String addHouse(@ModelAttribute("house")House house) {
+        return "addHouse.jsp";
+    }
+    @RequestMapping(value = "/add",method = RequestMethod.POST)
+    public String addNewHouse(@Valid @ModelAttribute("house")House house,BindingResult result){
+        if(result.hasErrors()){
+            return "addHouse.jsp";
+        }
+        else{
+            housiiService.newHouse(house);
+            return "redirect:/";
+        }
+    }
+
     @RequestMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();

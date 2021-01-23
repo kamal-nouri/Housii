@@ -74,6 +74,15 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles;
+
+    public User(@Pattern(regexp = "([a-zA-Z]*){3,}", message = "name must be letters and at least 3 characters") String name, @Email(message = "Email must be valid") @NotBlank(message = "Email must not be blank") String email, @Pattern(regexp = "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}", message = "password must contain capital letter, small letter, numbers and at least 8 characters") String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
+
+
+
     @PrePersist
     protected void onCreate(){
         this.createdAt = new Date();

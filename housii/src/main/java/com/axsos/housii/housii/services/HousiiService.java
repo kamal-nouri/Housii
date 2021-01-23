@@ -160,7 +160,11 @@ public class HousiiService {
         houseRepository.save(updateHousi);
     }
 
-    public List<House> rentedHousesForUser(User user) {
+    public House newHouse(House house) {
+        return houseRepository.save(house);
+    }
+
+        public List<House> rentedHousesForUser(User user) {
         return houseRepository.findAllByUser(user);
     }
 

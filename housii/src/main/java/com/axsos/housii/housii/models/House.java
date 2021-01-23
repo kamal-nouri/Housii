@@ -55,6 +55,13 @@ public class House {
     public House() {
     }
 
+    public House(@NotBlank(message = "House name must not be blank") @Size(min = 3, max = 255, message = "House name must be letters and at least 3 characters") String name, @NotBlank(message = "location name must not be blank") @Size(min = 3, message = "location must be letters and at least 3 characters") String location, @NotBlank(message = "description must not be blank") @Size(min = 10, message = "description must be at least 10 characters") String description, @DecimalMin(value = "1.0", message = "Price must be at least one") double price) {
+        this.name = name;
+        this.location = location;
+        this.description = description;
+        this.price = price;
+    }
+
     public Long getId() {
         return id;
     }
