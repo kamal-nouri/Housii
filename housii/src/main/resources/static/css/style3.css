@@ -5,7 +5,7 @@
 footer{
   position: sticky;
   height: 100%;
-  top: calc( 100vh - 100px );
+  /*top: calc( 0 - 100px );*/
 }
 p {
     font-family: 'Nunito', sans-serif;

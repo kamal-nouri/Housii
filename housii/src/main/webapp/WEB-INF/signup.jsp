@@ -41,7 +41,7 @@
             <form:input type="email" cssClass="form-control" id="email" placeholder="Email" path="email"/>
         </div>
         <div class="form-group">
-            <form:input cssClass="form-control" id="name" placeholder=" Name" path="name"/>
+            <form:input cssClass="form-control" id="phoneNumber" placeholder="Phone Number" path="phoneNumber"/>
         </div>
         <div class="form-group">
             <form:password cssClass="form-control" id="password" placeholder="Password" path="password"/>

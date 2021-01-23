@@ -27,8 +27,17 @@ public class User {
     private String email;
     @Pattern(regexp = "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}", message = "password must contain capital letter, small letter, numbers and at least 8 characters")
     private String password;
-    @Size(max = 10,message = "")
+    @Size(max = 10,message = "Phone Number must be 10 numbers")
     private String phoneNumber;
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     @Transient
     private String passwordConfirmation;
     @OneToMany(mappedBy="user", fetch = FetchType.LAZY)

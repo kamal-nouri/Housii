@@ -45,6 +45,7 @@
 <div class="card_title title-white">
     <p>${house.location}</p>
 </div>
+<p class="spec">Location :${house.location} </p>
 <p class="spec">Location :${house.description} </p>
 <p class="spec">Price :${house.price} </p>
 <form:form modelAttribute="house" method="post" action="/">

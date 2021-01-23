@@ -154,11 +154,11 @@
     </div>
     <!-- End Copyright -->
     <!-- Back to top -->
-    <div id="back-to-top" class="back-to-top">
-        <button class="btn btn-dark" title="Back to Top" style="display: block;">
-            <i class="fa fa-angle-up"></i>
-        </button>
-    </div>
+<%--    <div id="back-to-top" class="back-to-top">--%>
+<%--        <button class="btn btn-dark" title="Back to Top" style="display: block;">--%>
+<%--            <i class="fa fa-angle-up"></i>--%>
+<%--        </button>--%>
+<%--    </div>--%>
     <!-- End Back to top -->
 </footer>
 </body>
