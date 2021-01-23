@@ -65,7 +65,7 @@
     <input type="text"  path="location" placeholder="House Location ..."/>
 
     <form:label path="price">Price:</form:label>
-    <input  path="price" placeholder="House Price ..."/>
+    <input  type="text" path="price" placeholder="House Price ..."/>
 
 
     <form:label path="category">Category:</form:label>
@@ -76,12 +76,13 @@
     </form:select>
 
     <form:label path="description">Description:</form:label>
-    <input  path="description" placeholder="Write Description.." style="height:200px"/>
+    <input  type="text" path="description" placeholder="Write Description.." style="height:200px"/>
     <input type="submit" value="Add">
-</form:form>
     <form action="/">
-    <input type="submit" value="Back">
+        <input type="submit" value="Back">
     </form>
+</form:form>
+
     </div>
 </body>
 </html>
