@@ -45,7 +45,8 @@
 <img src="${pageContext.request.contextPath}/img/${house.name}.jpg"
      alt="image for ${house.name}"/>
 <div class="right">
-    <p>${house.location}</p>
+    <p>  <h3> ${house.name}</h3></p>
+    <p>Location: ${house.location}</p>
     <p>Description :${house.description} </p>
     <p>Price :${house.price} </p>
     <form:form modelAttribute="house" method="post" action="/">
