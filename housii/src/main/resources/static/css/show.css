@@ -1,0 +1,28 @@
+body {
+    background-color: #202020;
+}
+
+img {
+    max-width: 90%;
+    margin-left: 63px;
+    border-radius: 30px;
+}
+
+p {
+    margin-left: 63px;
+    font-family: cursive;
+    color: beige;
+}
+
+.bn {
+    border-radius: 20px;
+    background: linear-gradient(45deg, #a273b1, #00000069);
+    color: beige;
+    width: 100px;
+    font-family: cursive;
+}
+input{
+    margin-left: 63px;
+    font-family: cursive;
+    border-radius: 10px;
+}

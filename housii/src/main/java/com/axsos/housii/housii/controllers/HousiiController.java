@@ -30,14 +30,8 @@ public class HousiiController {
 
     @RequestMapping("/")
     public String home(HttpSession session, Model model, @ModelAttribute("category") Category category) {
-//        if (session.getAttribute("userId") == null) {
-//            return "redirect:/login";
-//        } else {
-//            Long userId = (Long) session.getAttribute("userId");
-//            User user = housiiService.findUser(userId);
         List<Category> categories=housiiService.allCategories();
         model.addAttribute("categories",categories);
-
         return "home.jsp";
     }
     /////////////////////////////////////////////////////////////////
@@ -60,10 +54,7 @@ public class HousiiController {
         return "signin.jsp";
     }
     @RequestMapping("/login")
-    public String login(HttpSession session,@ModelAttribute("user")User user) {
-        if(session.getAttribute("userId")!=null){
-            return "redirect:/home";
-        }
+    public String login(@ModelAttribute("user")User user) {
         return "signin.jsp";
     }
     @RequestMapping(value="/loginuser", method=RequestMethod.POST)
@@ -72,13 +63,15 @@ public class HousiiController {
             User user1 = housiiService.findByEmail(user.getEmail());
             if(user1.isEnabled()) {
                 session.setAttribute("userId", user1.getId());
-                return "reg_success.jsp";
+                return "redirect:/";
             }else{
+                System.out.println("account is not verified");
                 model.addAttribute("error","account is not verified");
                 return "signin.jsp";
             }
         }
         else{
+            System.out.println("bad password");
             model.addAttribute("error","Either password/email are incorrect");
             return "signin.jsp";
         }
@@ -114,11 +107,16 @@ public class HousiiController {
         return "category.jsp";
     }
     @RequestMapping("/cat/{id}")
-    public String ShowCat(@PathVariable("id") Long id, Model model,@ModelAttribute("house") House house) {
+    public String ShowCat(@PathVariable("id") Long id, Model model,@ModelAttribute("house") House house,HttpSession session) {
 //        Category category = housiiService.findCategory(name);
         House house1 = housiiService.findHouse(id);
         System.out.println(house1.getId());
         model.addAttribute("house", house1);
         return "show.jsp";
+    }
+    @RequestMapping("/logout")
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "redirect:/";
     }
 }

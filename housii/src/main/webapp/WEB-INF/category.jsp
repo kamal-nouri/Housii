@@ -63,7 +63,7 @@
                 </form>
             </div>
             <div id="last">
-            <a class="btn" href="#">Rent</a>
+            <a class="btn" href="/cat/${house.id}">Rent</a>
             <a class="btn" href="/cat/${house.id}">More Details</a>
             </div>
         </div>

@@ -46,14 +46,14 @@ public class HousiiService {
 
     // 1
     public void saveWithUserRole(User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+//        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setRoles(roleRepository.findByName("ROLE_USER"));
         userRepository.save(user);
     }
 
     // 2
     public void saveUserWithAdminRole(User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+//        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setRoles(roleRepository.findByName("ROLE_ADMIN"));
         userRepository.save(user);
     }
@@ -175,7 +175,7 @@ public class HousiiService {
     // Email verification
     public void register(User user, String siteURL)
             throws UnsupportedEncodingException, MessagingException {
-        String encodedPassword = passwordEncoder.encode(user.getPassword());
+//        String encodedPassword = passwordEncoder.encode(user.getPassword());
         String hashed = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
         user.setPassword(hashed);
 
@@ -241,7 +241,7 @@ public class HousiiService {
             return false;
         }
         else{
-            String encodedPassword = passwordEncoder.encode(password);
+//            String encodedPassword = passwordEncoder.encode(password);
             // if the passwords match, return true, else, return false
             if(BCrypt.checkpw(password, user.getPassword())) {
                 return true;

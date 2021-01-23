@@ -29,10 +29,16 @@
                 <li class="nav-item active"><a href="#" class="nav-link">Houses <span class="sr-only">(current)</span></a></li>
                 <li class="nav-item active"><a href="#" class="nav-link">Studios</a></li>
                 <li class="nav-item active"><a href="#" class="nav-link">Villa</a></li>
+                <c:choose>
+                    <c:when test="${userId==null}">
                 <li class="nav-item active"><a href="/login" class="nav-link">Login</a></li>
                 <li class="nav-item active"><a href="/register" class="nav-link">Sign Up</a></li>
-                <!-- <li class="nav-item active"><a href="/meals/cart" class="nav-link">Cart</a></li>
-                <li class="nav-item active"><a href="/logout" class="nav-link">Logout</a></li> -->
+                    </c:when>
+                    <c:when test="${userId!=null}">
+                <li class="nav-item active"><a href="/myprofile/${userId}" class="nav-link">My Profile</a></li>
+                <li class="nav-item active"><a href="/logout" class="nav-link">Logout</a></li>
+                    </c:when>
+                </c:choose>
             </ul>
         </div>
     </div>

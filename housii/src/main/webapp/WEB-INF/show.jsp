@@ -1,3 +1,5 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Abood
@@ -34,15 +36,20 @@
     <title>Title</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/category.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/show.css">
 </head>
 <body>
 <%@ include file = "header.jsp" %>
-<div class="card_image"><img src="${pageContext.request.contextPath}/img/${house.name}.jpg" alt="image for ${house.name}"/></div>
+<div class="card_image"><img src="${pageContext.request.contextPath}/img/${house.name}.jpg"
+                             alt="image for ${house.name}"/></div>
 <div class="card_title title-white">
     <p>${house.location}</p>
 </div>
 <p class="spec">Location :${house.description} </p>
 <p class="spec">Price :${house.price} </p>
-<%@ include file = "footer.jsp" %>
+<form:form modelAttribute="house" method="post" action="/">
+    <input type="date" value="${house.date}">
+    <input class="bn" type="submit" value="Rent">
+</form:form>
 </body>
 </html>
