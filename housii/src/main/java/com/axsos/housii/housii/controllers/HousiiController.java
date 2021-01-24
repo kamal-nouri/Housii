@@ -134,6 +134,9 @@ public class HousiiController {
 
     @RequestMapping(value = "/rent/{id}", method = RequestMethod.POST)
     public String addRent(Model model, HttpSession session,@RequestParam("date")String date, @PathVariable("id") Long id) throws ParseException {
+        if(session.getAttribute("userId")==null){
+            return "redirect:/login";
+        }
         System.out.println(date);
         Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(date);
         String[] sDate=date.split("-");

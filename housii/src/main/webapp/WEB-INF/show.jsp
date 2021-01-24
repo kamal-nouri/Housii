@@ -62,7 +62,7 @@
                         <input type="date" id="date" name="date"/>
                     </p>
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                    <input type="submit" value="Rent"/>
+                    <input class="bn" type="submit" value="Rent"/>
                 </form>
             </c:when>
         </c:choose>

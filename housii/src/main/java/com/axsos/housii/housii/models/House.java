@@ -11,7 +11,7 @@ import java.util.List;
 @Table(name = "houses")
 public class House {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank(message = "House name must not be blank")
     @Size(min = 3, max = 255, message = "House name must be letters and at least 3 characters")
